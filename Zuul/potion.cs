@@ -3,7 +3,7 @@ using System;
 public class Potion : Item
 {
     // Constructor of base class Item is called with arguments
-    public Potion(string d, int w) : base(d, w) {
+    public Potion(string d, int w, bool s) : base(d, w, s) {
         Console.WriteLine("Potion ctor");
     }
 

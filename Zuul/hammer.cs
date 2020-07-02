@@ -3,7 +3,7 @@ using System;
 public class Hammer : Item
 {
     // Constructor of base class Item is called with arguments
-    public Hammer(string d, int w) : base(d, w) {
+    public Hammer(string d, int w, bool s) : base(d, w, s) {
         Console.WriteLine("Hammer ctor");
     }
 

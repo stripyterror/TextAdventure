@@ -24,8 +24,8 @@ namespace Zuul
 
 
             //create items
-            hammer = new Hammer("hammer", 5);
-            potion = new Potion("BrokenBottle", 1);
+            hammer = new Hammer("hammer", 5, false);
+            potion = new Potion("BrokenBottle", 1, true);
 
 			// create the rooms
 			outside = new Room("outside the main entrance of the university");
@@ -118,7 +118,7 @@ namespace Zuul
 					printHelp();
 					break;
 				case "go":
-					player.damage(1);
+					
                     Console.WriteLine("your life total is" + " " + player.health);
                     player.isAlive();
 					if (player.alive == false) {
@@ -152,14 +152,35 @@ namespace Zuul
 	     * command words.
 	     */
 
+        private void goCut()
+        {
+            player.damage(1);
+            
+        }
+
         private void goTake(Command command)
         {
+            
             string itemToPickup = command.getSecondWord();
+            Item itemToTake = player.currentRoom.inventory.Take(itemToPickup);
+            if (itemToTake != null)
+            {
+                player.inventory.Put(itemToTake);
+            }
+            if (itemToTake.isSharp)
+            {
+                goCut();
+            }
         }
 
         private void goDrop(Command command)
         {
-
+            string itemToDiscard = command.getSecondWord();
+            Item itemToDrop = player.inventory.Take(itemToDiscard);
+            if (itemToDrop != null)
+            {
+                player.currentRoom.inventory.Put(itemToDrop);
+            }
         }
 
         private void goLook() 
