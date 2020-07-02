@@ -24,8 +24,8 @@ namespace Zuul
 
 
             //create items
-            hammer = new Hammer("a big sledgehammer", 5);
-            potion = new Potion("a broken bottle of glass, it looks dangerous", 1);
+            hammer = new Hammer("hammer", 5);
+            potion = new Potion("BrokenBottle", 1);
 
 			// create the rooms
 			outside = new Room("outside the main entrance of the university");
@@ -152,12 +152,12 @@ namespace Zuul
 	     * command words.
 	     */
 
-        private void goTake()
+        private void goTake(Command command)
         {
             string itemToPickup = command.getSecondWord();
         }
 
-        private void goDrop()
+        private void goDrop(Command command)
         {
 
         }
