@@ -4,6 +4,7 @@ namespace Zuul
 {
 	public class Room
 	{
+        public bool isGuarded;
         public Inventory inventory = new Inventory(10);
 
 
@@ -29,6 +30,15 @@ namespace Zuul
 			exits[direction] = neighbor;
 		}
 
+        public void setGuarded(bool tof)
+        {
+            isGuarded = tof;
+        }
+
+        public bool guardAlive()
+        {
+            return isGuarded;
+        }
 		/**
 	     * Return the description of the room (the one that was defined in the
 	     * constructor).
@@ -90,6 +100,8 @@ namespace Zuul
 			}
 
 		}
+
+
 
 		
 	}

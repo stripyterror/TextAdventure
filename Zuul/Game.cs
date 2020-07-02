@@ -58,6 +58,10 @@ namespace Zuul
 
 			outside.inventory.Put(hammer);
             outside.inventory.Put(potion);
+
+            //is room guarded?
+
+            lab.setGuarded(true);
 		}
 
 
@@ -155,6 +159,8 @@ namespace Zuul
 	     * command words.
 	     */
 
+       
+
         private void goUse(Command command)
         {
             string useableItem = command.getSecondWord();
@@ -230,8 +236,21 @@ namespace Zuul
 			if (nextRoom == null) {
 				Console.WriteLine("There is no door to "+direction+"!");
 			} else {
-				player.currentRoom = nextRoom;
-				Console.WriteLine(player.currentRoom.getLongDescription());
+                if (nextRoom.guardAlive() )
+                {
+                    if (player.inventory.GetItem("hammer") != null)
+                    {
+                        Console.WriteLine("You knocked out the gaurd.");
+                        player.currentRoom = nextRoom;
+                        Console.WriteLine(player.currentRoom.getLongDescription());
+                    }
+                    else
+                    { Console.WriteLine("there is a gaurd standing in your way, you could probably take him if you had a weapon."); }
+                } else
+                {
+                    player.currentRoom = nextRoom;
+                    Console.WriteLine(player.currentRoom.getLongDescription());
+                }
 			}
 		}
 
