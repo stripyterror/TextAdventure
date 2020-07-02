@@ -78,5 +78,18 @@ namespace Zuul
             return t;
         }
 
+        public Item GetItem(string itemToUse)
+        {
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (itemToUse == items[i].description)
+                {
+                    return items[i];
+                }
+            }
+            return null;
+
+        }
+
     }
 }

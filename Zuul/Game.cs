@@ -139,6 +139,9 @@ namespace Zuul
                 case "drop":
                     goDrop(command);
                     break;
+                case "use":
+                    goUse(command);
+                    break;
 			}
 
 			return wantToQuit;
@@ -151,6 +154,13 @@ namespace Zuul
 	     * Here we print some stupid, cryptic message and a list of the
 	     * command words.
 	     */
+
+        private void goUse(Command command)
+        {
+            string useableItem = command.getSecondWord();
+            Item itemToUse = player.inventory.GetItem(useableItem);
+            itemToUse.Use();
+        }
 
         private void goCut()
         {

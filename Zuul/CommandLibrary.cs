@@ -18,7 +18,8 @@ namespace Zuul
 				"help",
 				"look",
                 "take",
-                "drop"
+                "drop",
+                "use"
 			};
 		}
 
