@@ -16,7 +16,9 @@ namespace Zuul
 				"go",
 				"quit",
 				"help",
-				"look"
+				"look",
+                "take",
+                "drop"
 			};
 		}
 

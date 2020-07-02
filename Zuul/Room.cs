@@ -4,7 +4,10 @@ namespace Zuul
 {
 	public class Room
 	{
-		private string description;
+        public Inventory inventory = new Inventory(10);
+
+
+        private string description;
 		private Dictionary<string, Room> exits; // stores exits of this room.
 
 		/**
@@ -46,7 +49,12 @@ namespace Zuul
 			returnstring += description;
 			returnstring += ".\n";
 			returnstring += getExitstring();
-			return returnstring;
+            returnstring += ".\n";
+            returnstring += "you see the following items:";
+            returnstring += this.inventory.Show();
+            
+
+            return returnstring;
 		}
 
 		/**
@@ -82,5 +90,7 @@ namespace Zuul
 			}
 
 		}
+
+		
 	}
 }

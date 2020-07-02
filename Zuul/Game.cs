@@ -7,6 +7,8 @@ namespace Zuul
 	{
 		private Parser parser;
 		private Player player;
+        public Hammer hammer;
+        public Potion potion;
 
 		public Game ()
 		{
@@ -19,6 +21,11 @@ namespace Zuul
 		private void createRooms()
 		{
 			Room outside, theatre, pub, lab, office, labSecondStory;
+
+
+            //create items
+            hammer = new Hammer("a big sledgehammer", 5);
+            potion = new Potion("a broken bottle of glass, it looks dangerous", 1);
 
 			// create the rooms
 			outside = new Room("outside the main entrance of the university");
@@ -46,6 +53,11 @@ namespace Zuul
 			office.setExit("west", lab);
 
 			player.currentRoom = outside;  // start game outside
+
+			//add inventories to rooms
+
+			outside.inventory.Put(hammer);
+            outside.inventory.Put(potion);
 		}
 
 
@@ -83,7 +95,8 @@ namespace Zuul
 			Console.WriteLine("Type 'help' if you need help.");
 			Console.WriteLine();
 			Console.WriteLine(player.currentRoom.getLongDescription());
-		}
+            Console.WriteLine("your life total is" + " " + player.health);
+        }
 
 		/**
 	     * Given a command, process (that is: execute) the command.
@@ -106,7 +119,8 @@ namespace Zuul
 					break;
 				case "go":
 					player.damage(1);
-					player.isAlive();
+                    Console.WriteLine("your life total is" + " " + player.health);
+                    player.isAlive();
 					if (player.alive == false) {
 						wantToQuit = true;
 					}
@@ -119,20 +133,36 @@ namespace Zuul
 				case "look":
 					goLook();
 					break;
+                case "take":
+                    goTake(command);
+                    break;
+                case "drop":
+                    goDrop(command);
+                    break;
 			}
 
 			return wantToQuit;
 		}
 
-		// implementations of user commands:
+        // implementations of user commands:
 
-		/**
+        /**
 	     * Print out some help information.
 	     * Here we print some stupid, cryptic message and a list of the
 	     * command words.
 	     */
 
-		private void goLook() 
+        private void goTake()
+        {
+            string itemToPickup = command.getSecondWord();
+        }
+
+        private void goDrop()
+        {
+
+        }
+
+        private void goLook() 
 		{
 			Console.WriteLine(player.currentRoom.getLongDescription());
 		

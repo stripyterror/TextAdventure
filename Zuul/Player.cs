@@ -6,7 +6,8 @@ namespace Zuul
 
 	public class Player
 	{
-		public Boolean alive;
+        public Inventory inventory = new Inventory(20);
+        public Boolean alive;
 		public float health;
 		public Room currentRoom;
 

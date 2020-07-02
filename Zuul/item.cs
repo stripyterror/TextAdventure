@@ -12,8 +12,9 @@ public abstract class Item
     }
 
     // this method is executed when called on a subclass.
-    public void Show() {
-        Console.WriteLine(" - Item '" + this.description + "' weighs " + this.weight);
+    public string Show()
+    {
+        return "\n" + " " + this.description + "' weighs " + this.weight ;
     }
 
     // this method is 'virtual', and should be 'override' in subclasses.
